@@ -14,16 +14,28 @@
       <button>Submit</button>
     </form>
     <script>
+      
       function saveToLocalStorage(event){
         event.preventDefault();
-        const name=event.target.username.value;
+        let myObj={
+          name:event.target.username.value,
+          email:event.target.emailId.value,
+          phoneNumber:event.target.telephonenumber.value,
+        };
+       /* const name=event.target.username.value;
         const email=event.target.emailId.value;
-        const phoneNumber=event.target.telephonenumber.value;
-        localStorage.setItem('name', name);
+        const phoneNumber=event.target.telephonenumber.value;*/
+       /* localStorage.setItem('name', name);
         localStorage.setItem('email', email);
-        localStorage.setItem('phonenumber', phoneNumber);
+        localStorage.setItem('phonenumber', phoneNumber);*/
         
-     }
+        let myObj_serialized=JSON.stringify(myObj);
+        console.log(myObj_serialized)
+        localStorage.setItem("myObj", myObj_serialized);
+        let myObj_deserialized=JSON.parse(localStorage.getItem('myObj'));
+        console.log(myObj_deserialized);
+        
+     }console.log(localStorage.getItem('myObj'))
       </script>
   </body>
 </html>
