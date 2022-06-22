@@ -13,6 +13,7 @@
       <input type="tel" name="telephonenumber"/>
       <button>Submit</button>
     </form>
+    <ul id='listName'></ul>
     <script>
       
       function saveToLocalStorage(event){
@@ -30,12 +31,18 @@
         localStorage.setItem('phonenumber', phoneNumber);*/
         
         let myObj_serialized=JSON.stringify(myObj);
-        console.log(myObj_serialized)
-        localStorage.setItem("myObj", myObj_serialized);
+        
+        localStorage.setItem(myObj.email, myObj_serialized);
         let myObj_deserialized=JSON.parse(localStorage.getItem('myObj'));
         console.log(myObj_deserialized);
-        
-     }console.log(localStorage.getItem('myObj'))
+        showNewUserOnScreen(myObj);
+     }
+     function showNewUserOnScreen(user){
+      const parentNode=document.getElementById('listName');
+      console.log(parentNode);
+      const childHTML=`<li> ${user.name}-${user.email}</li>`;
+      parentNode.innerHTML=parentNode.innerHTML+childHTML;
+     }
       </script>
   </body>
 </html>
