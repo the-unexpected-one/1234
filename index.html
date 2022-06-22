@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ABCD</title>
+  </head>
+  <body>
+    <form onsubmit="saveToLocalStorage(event)">
+      <label> Name</label>
+      <input type="text" name="username" required/>
+      <label>emailId</label>
+      <input type="email" name="emailId" required/>
+      <label> Phone Number</label>
+      <input type="tel" name="telephonenumber"/>
+      <button>Submit</button>
+    </form>
+    <script>
+      function saveToLocalStorage(event){
+        event.preventDefault();
+        const name=event.target.username.value;
+        const email=event.target.emailId.value;
+        const phoneNumber=event.target.telephonenumber.value;
+        localStorage.setItem('name', name);
+        localStorage.setItem('email', email);
+        localStorage.setItem('phonenumber', phoneNumber);
+        
+     }
+      </script>
+  </body>
+</html>
