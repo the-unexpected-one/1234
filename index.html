@@ -6,11 +6,11 @@
   <body>
     <form onsubmit="saveToLocalStorage(event)">
       <label> Name</label>
-      <input type="text" name="username" required/>
+      <input id='username'type="text" name="username" required/>
       <label>emailId</label>
-      <input type="email" name="emailId" required/>
+      <input id='emailId'type="email" name="emailId" required/>
       <label> Phone Number</label>
-      <input type="tel" name="telephonenumber"/>
+      <input id='telephonenumber'type="tel" name="telephonenumber"/>
       <button>Submit</button>
     </form>
     <ul id='listName'></ul>
@@ -40,9 +40,37 @@
      function showNewUserOnScreen(user){
       const parentNode=document.getElementById('listName');
       console.log(parentNode);
-      const childHTML=`<li> ${user.name}-${user.email}</li>`;
+      const childHTML=`<li id=${user.email}> ${user.name}-${user.email}<button onclick=editBtn('${user.name}','${user.email}','${user.phoneNumber}')>EDIT</button><button onclick=deleteUser('${user.email}')>DELETE</button</li>`;
       parentNode.innerHTML=parentNode.innerHTML+childHTML;
      }
+     
+     //add deleting fundamentals to delete button
+     
+     function deleteUser(emailId){
+       console.log(emailId)
+        localStorage.removeItem(emailId);
+        removeUserFromScreen(emailId);
+        
+
+      }
+      function removeUserFromScreen(emailId){
+        const parentNode=document.getElementById('listName');
+        const childNodeToBeRemoved=document.getElementById(emailId);
+        parentNode.removeChild(childNodeToBeRemoved);
+      }
+      //function to edit userdetails
+      function editBtn(editName,editEmail,editPhoneNumber){
+        document.getElementById('username').value=editName;
+        document.getElementById('emailId').value=editEmail;
+        document.getElementById('telephonenumber').value=editPhoneNumber;
+        
+        deleteUser(editEmail);
+        
+        //old[0]=newName;
+       // old[1]=newEmail;
+      }
+     
+
       </script>
   </body>
 </html>
